@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Doe | Frontend Developer Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #23272f 0%, #3a3f4b 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      background: rgba(40, 62, 81, 0.7);
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      width: 100%;
+    }
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 2rem 0 1rem 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover {
+      color: #39ff14;
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 0 2rem 0;
+      min-height: 80vh;
+    }
+    .hero-photo {
+      flex: 0 0 220px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: -64px;
+    }
+    .hero-photo img {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 5px solid #39ff14;
+      background: #fff;
+      box-shadow: 0 0 0 6px #23272f, 0 0 20px #39ff14;
+    }
+    .hero-info {
+      flex: 1 1 350px;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: 1px;
+    }
+    .hero-role {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .hero-role .highlight {
+      color: #39ff14;
+      text-shadow: 0 0 8px #39ff14;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #cfd8dc;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .btn-cv {
+      background: #39ff14;
+      color: #23272f;
+      font-weight: 700;
+      border: none;
+      border-radius: 30px;
+      padding: 0.7rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #39ff14;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-cv:hover {
+      background: #1976d2;
+    }
+    .socials {
+      display: flex;
+      gap: 1rem;
+    }
+    .socials a {
+      color: #39ff14;
+      font-size: 1.5rem;
+      border: 2px solid #39ff14;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .socials a:hover {
+      background: #39ff14;
+      color: #23272f;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      color: #39ff14;
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+    }
+    .about {
+      font-size: 1.1rem;
+      color: #cfd8dc;
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+    .edu-list, .skills-list, .achieve-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .edu-list li, .achieve-list li {
+      margin-bottom: 1.2rem;
+      background: #282c34;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 6px rgba(33,150,243,0.05);
+    }
+    .edu-degree {
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .edu-school {
+      color: #39ff14;
+      font-size: 1rem;
+    }
+    .edu-year {
+      color: #b0bec5;
+      font-size: 0.95rem;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+    .skills-list li {
+      background: #23272f;
+      color: #39ff14;
+      border: 1.5px solid #39ff14;
+      border-radius: 20px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: #282c34;
+      border: 1.5px solid #39ff14;
+      border-radius: 10px;
+      width: 320px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(57,255,20,0.10);
+      color: #fff;
+      padding: 0 0 1.2rem 0;
+    }
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 0;
+      margin-bottom: 0;
+      display: block;
+    }
+    .project-card h3 {
+      margin-top: 0;
+      color: #39ff14;
+      font-size: 1.2rem;
+    }
+    .project-card p {
+      color: #b0bec5;
+      font-size: 1rem;
+      margin: 0 0 0.7rem 0;
+      width: 90%;
+      text-align: left;
+    }
+    .project-card a,
+    .github-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #23272f;
+      background: #39ff14;
+      border-radius: 6px;
+      padding: 0.4rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: none;
+      margin-right: 0.5rem;
+    }
+    .project-card a:hover,
+    .github-link:hover {
+      background: #39ff14;
+      color: #23272f;
+    }
+    .achieve-list li {
+      color: #fff;
+    }
+    .contact-info {
+      font-size: 1.1rem;
+      color: #cfd8dc;
+    }
+    .contact-info a {
+      color: #39ff14;
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+      }
+      .hero-photo {
+        align-self: center;
+      }
+    }
+    .achievement-img {
+      width: 100%;
+      max-width: 320px;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      border: 5px solid #39ff14;
+      margin: 0 auto;
+      background: none;
+      border-radius: 0;
+    }
+    .cert-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .cert-list li {
+      background: #23272f;
+      color: #39ff14;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      padding: 1rem 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      box-shadow: 0 1px 6px rgba(33,150,243,0.05);
+    }
+    .cert-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .cert-card {
+      background: #23272f;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(33,150,243,0.05);
+      padding: 1rem 1.2rem;
+      text-align: center;
+      max-width: 260px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cert-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(33,150,243,0.15);
+    }
+    .cert-img {
+      width: 100%;
+      max-width: 220px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 3px solid #39ff14;
+      margin-bottom: 0.7rem;
+      background: #fff;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      position: relative;
+      margin: 2% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 800px;
+      background: #23272f;
+      border-radius: 15px;
+      border: 2px solid #39ff14;
+      box-shadow: 0 0 30px rgba(33,150,243,0.3);
+    }
+    .modal-img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 3px solid #39ff14;
+      background: #fff;
+    }
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #39ff14;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .close:hover {
+      color: #fff;
+    }
+    .modal-title {
+      color: #39ff14;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .view-cert-btn {
+      background: transparent;
+      color: #39ff14;
+      font-weight: 600;
+      border: 2px solid #39ff14;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .view-cert-btn:hover {
+      background: #39ff14;
+      color: #23272f;
+    }
+    .cert-title {
+      color: #39ff14;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: bold;
+    }
+    .cert-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 2rem;
+      padding: 1rem 0;
+      scroll-behavior: smooth;
+    }
+    .cert-card {
+      background: #23232b;
+      border-radius: 20px;
+      min-width: 320px;
+      max-width: 340px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 24px rgba(33,150,243,0.08);
+      text-align: center;
+      color: #39ff14;
+      flex-shrink: 0;
+      position: relative;
+      border: 2px solid #39ff14;
+    }
+    .cert-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.7rem;
+    }
+    .cert-issuer {
+      color: #b0bec5;
+      margin-bottom: 1.2rem;
+    }
+    .view-cert-btn {
+      background: #39ff14;
+      color: #23232b;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+    .view-cert-btn:hover {
+      background: #1976d2;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #23232b;
+      color: #39ff14;
+      border: none;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(33,150,243,0.15);
+    }
+    .slider-arrow.left { left: 10px; }
+    .slider-arrow.right { right: 10px; }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center; align-items: center;
+    }
+    .modal-img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      border: 5px solid #39ff14; /* matches your photo border */
+      box-shadow: 0 0 30px #39ff14;
+      background: #fff;
+    }
+    .close {
+      position: absolute;
+      top: 30px; right: 50px;
+      color: #39ff14;
+      font-size: 3rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    .close:hover {
+      color: #fff;
+    }
+  </style>
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <section class="hero" id="home">
+      <div class="hero-info">
+        <div class="hero-title">PULI SIREESHA</div>
+        <div class="hero-role">I'm a <span class="highlight">JavaDeveloper</span></div>
+        <div class="hero-desc">
+          To begin my professional career in a reputed organization where I can utilize my technical skills, academic knowledge, and passion for software development to contribute to innovative projects while continuously learning and evolving as an IT professional.
+        </div>
+        <div class="hero-actions">
+          <a href="#" class="btn-cv" download>Resume</a>
+          <div class="socials">
+            <a href="https://github.com/Sireesha-244" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/puli-sireesha-3841b32b1/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="photo1.jpg" alt="Profile Photo" style="width: 240px; height: 240px; object-fit: cover; object-position: center; border-radius: 50%; border: 5px solid #39ff14; background: #fff; box-shadow: 0 0 0 6px #23272f, 0 0 20px #39ff14; display: block; margin: 0 auto;" />
+      </div>
+    </section>
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about">
+        Hi! I'm Puli Sireesha, a passionate and detail-oriented aspiring software developer with a strong foundation in object-oriented programming (OOP) and data structures and algorithms (DSA). I enjoy transforming ideas into functional, user-friendly applications through the projects I've built. As a fresher, my goal is to continuously learn, contribute to meaningful projects, and create software solutions that make a real impact.
+      </div>
+    </section>
+    <section id="education">
+      <h2>Education</h2>
+      <ul class="edu-list">
+        <li>
+          <div class="edu-degree">B.Tech in Computer Science and Engineering</div>
+          <div class="edu-school">Mohan Babu University, Tirupati</div>
+          <div class="edu-year">2022 – 2026</div>
+          <div class="edu-year">CGPA: 9.3</div>
+        </li>
+        <li>
+          <div class="edu-degree">Intermediate (MPC)</div>
+          <div class="edu-school">Sri Chaitanya Junior College, Nellore</div>
+          <div class="edu-year">2020 – 2022</div>
+          <div class="edu-year">Percentage: 81.5%</div>
+        </li>
+        <li>
+          <div class="edu-degree">SSC</div>
+          <div class="edu-school">Ratnam High School, Kovur</div>
+          <div class="edu-year">2019 – 2020</div>
+          <div class="edu-year">Percentage: 88.6%</div>
+        </li>
+      </ul>
+    </section>
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>SQL</li>
+        <li>Java</li>
+        <li>DSA</li>
+        <li>Teamwork</li>
+        <li>Git & GitHub</li>
+        <li>Problem Solving</li>
+       
+      </ul>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+        <a href="https://github.com/Sireesha-244/Personal-Portfolio" class="project-card" target="_blank" rel="noopener noreferrer">
+          <img src="protfolio.jpg" alt="Personal Portfolio Website" class="project-img" />
+          <h3>Personal Portfolio Website</h3>
+        </a>
+        <a href="https://github.com/Sireesha-244/Agro-Mart-website" class="project-card" target="_blank" rel="noopener noreferrer">
+          <img src="fertilizer1.jpg" alt="Agro Mart Website" class="project-img" />
+          <h3>Agro Mart Website</h3>
+        </a>
+        <a href="https://github.com/Sireesha-244/Hackathon-Management-System" class="project-card" target="_blank" rel="noopener noreferrer">
+          <img src="hackthon-platform.jpg" alt="Hackathon Management System" class="project-img" />
+          <h3>Hackathon Management System</h3>
+        </a>
+      </div>
+    </section>
+    <section id="achievements">
+      <h2 class="cert-title">Achievements</h2>
+      <div class="cert-slider">
+        <div class="cert-card">
+          <img src="workshop1.png" alt="Web Development Workshop Icon" style="width:60px;height:60px;border-radius:50%;margin-bottom:1rem;box-shadow:0 0 18px #39ff14;display:block;margin-left:auto;margin-right:auto;background:#23232b;">
+          <div class="cert-name">Web Development Workshop</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Organized and conducted a successful web development workshop, helping peers learn modern web technologies and hands-on project building.</div>
+          <button class="view-cert-btn" style="display:inline-block;" onclick="openWorkshopModal()">View Profile</button>
+        </div>
+        <div class="cert-card">
+          <img src="leetcode.png" alt="LeetCode Icon" style="width:60px;height:60px;border-radius:50%;margin-bottom:1rem;box-shadow:0 0 18px #39ff14;display:block;margin-left:auto;margin-right:auto;background:#23232b;">
+          <div class="cert-name">LeetCode</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Solved 150+ problems across various difficulty levels. Strong problem-solving skills in Data Structures and Algorithms.</div>
+          <a href="https://leetcode.com/u/puli_sireesha/" target="_blank" class="view-cert-btn" style="display:inline-block;">View Profile</a>
+        </div>
+        <div class="cert-card">
+          <img src="hackerrank.jpeg" alt="HackerRank Icon" style="width:60px;height:60px;border-radius:50%;margin-bottom:1rem;box-shadow:0 0 18px #39ff14;display:block;margin-left:auto;margin-right:auto;background:#23232b;">
+          <div class="cert-name">HackerRank</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Certified in Java (Basic). Practiced and solved coding challenges in Java, Python, and SQL.</div>
+          <a href="https://www.hackerrank.com/profile/pulisireesha13" target="_blank" class="view-cert-btn" style="display:inline-block;">View Profile</a>
+        </div>
+        <div class="cert-card">
+          <img src="code chef.jpeg" alt="CodeChef Icon" style="width:60px;height:60px;border-radius:50%;margin-bottom:1rem;box-shadow:0 0 18px #39ff14;display:block;margin-left:auto;margin-right:auto;background:#23232b;">
+          <div class="cert-name">CodeChef</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Solved 250+ problems. Earned Problem Solver - Silver Badge. Practiced DSA and competitive programming.</div>
+          <a href="https://www.codechef.com/users/many_vista_68" target="_blank" class="view-cert-btn" style="display:inline-block;">View Profile</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2 class="cert-title">Certifications</h2>
+      <div class="cert-slider">
+        <div class="cert-card">
+          <div class="cert-name">Frontend Developer</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Issued by Infosys Springboard</div>
+          <button class="view-cert-btn" onclick="openCertificate('web.jpg')" style="display:inline-block;">View Certificate</button>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Java Course [Udemy]</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Issued by Udemy</div>
+          <button class="view-cert-btn" onclick="openCertificate('udemy.jpg')" style="display:inline-block;">View Certificate</button>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Oracle Cloud Infrastructure</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Issued by Oracle</div>
+          <button class="view-cert-btn" onclick="openCertificate('oracle.jpg')" style="display:inline-block;">View Certificate</button>
+        </div>
+        <div class="cert-card">
+          <div class="cert-name">Java (HackerRank)</div>
+          <div class="cert-issuer" style="margin-bottom:1rem;">Issued by HackerRank</div>
+          <button class="view-cert-btn" onclick="openCertificate('hack.jpg')" style="display:inline-block;">View Certificate</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workshop Modal -->
+    <div id="workshopModal" class="modal">
+      <div class="modal-content" style="max-width:600px;">
+        <span class="close" onclick="closeWorkshopModal()">&times;</span>
+        <div class="modal-title" style="color:#39ff14;text-align:center;font-size:1.3rem;margin-bottom:1rem;">Web Development Workshop</div>
+        <img src="yuva.jpg" alt="YUVA Event" style="width:100%;max-width:200px;display:block;margin:0 auto 1rem auto;border-radius:10px;border:3px solid #39ff14;">
+        <img src="workshop.jpg" alt="Workshop" style="width:100%;max-width:200px;display:block;margin:0 auto;border-radius:10px;border:3px solid #39ff14;">
+      </div>
+    </div>
+
+    <script>
+      function openWorkshopModal() {
+        document.getElementById('workshopModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+      function closeWorkshopModal() {
+        document.getElementById('workshopModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+      // Optional: close modal on outside click or Escape
+      window.addEventListener('click', function(event) {
+        const modal = document.getElementById('workshopModal');
+        if (event.target === modal) closeWorkshopModal();
+      });
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') closeWorkshopModal();
+      });
+    </script>
+    <!-- Certificate Modal -->
+    <div id="certModal" class="modal">
+      <span class="close" onclick="closeCertificate()">&times;</span>
+      <img id="modalImg" class="modal-img" src="" alt="Certificate">
+    </div>
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <form style="background: #23272f; color: #fff; border-radius: 18px; box-shadow: 0 2px 12px rgba(33,150,243,0.08); padding: 2rem 2.5rem; max-width: 900px; margin: 0 auto 2rem auto;">
+        <div style="display: flex; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px; min-width: 200px;">
+            <label for="name" style="font-weight: 600; color: #fff;">Your Name</label><br>
+            <input type="text" id="name" name="name" placeholder="Enter your name" style="width: 100%; padding: 0.7rem; border-radius: 8px; border: 1px solid #39ff14; margin-top: 0.5rem; margin-bottom: 1rem; font-size: 1rem; background: #23272f; color: #fff;">
+          </div>
+          <div style="flex: 1 1 200px; min-width: 200px;">
+            <label for="email" style="font-weight: 600; color: #fff;">Your Email</label><br>
+            <input type="email" id="email" name="email" placeholder="Enter your email" style="width: 100%; padding: 0.7rem; border-radius: 8px; border: 1px solid #39ff14; margin-top: 0.5rem; margin-bottom: 1rem; font-size: 1rem; background: #23272f; color: #fff;">
+          </div>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label for="subject" style="font-weight: 600; color: #fff;">Subject</label><br>
+          <input type="text" id="subject" name="subject" placeholder="Enter subject" style="width: 100%; padding: 0.7rem; border-radius: 8px; border: 1px solid #39ff14; margin-top: 0.5rem; margin-bottom: 1rem; font-size: 1rem; background: #23272f; color: #fff;">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label for="message" style="font-weight: 600; color: #fff;">Message</label><br>
+          <textarea id="message" name="message" rows="5" placeholder="Enter your message" style="width: 100%; padding: 0.7rem; border-radius: 8px; border: 1px solid #39ff14; margin-top: 0.5rem; font-size: 1rem; background: #23272f; color: #fff;"></textarea>
+        </div>
+        <button type="submit" style="background: #39ff14; color: #23272f; font-weight: 700; border: none; border-radius: 30px; padding: 0.7rem 2rem; font-size: 1.1rem; cursor: pointer; box-shadow: 0 0 10px #39ff14; transition: background 0.2s;">Send Message</button>
+      </form>
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; justify-content: center;">
+        <div style="background: #23272f; color: #fff; border-radius: 18px; box-shadow: 0 2px 12px rgba(33,150,243,0.08); padding: 2rem 2.5rem; min-width: 260px; flex: 1 1 260px; max-width: 340px; display: flex; align-items: center; gap: 1.2rem;">
+          <span style="background: #23272f; border-radius: 50%; padding: 1rem; display: flex; align-items: center; justify-content: center; margin-right: 1rem;"><i class="fas fa-envelope" style="font-size:2rem;color:#39ff14;"></i></span>
+          <div>
+            <div style="font-weight: bold; font-size: 1.2rem; margin-bottom: 0.2rem; color: #fff;">Email</div>
+            <div style="word-break: break-all; color: #fff;">pulisireesha13@gmail.com</div>
+          </div>
+        </div>
+        <div style="background: #23272f; color: #fff; border-radius: 18px; box-shadow: 0 2px 12px rgba(33,150,243,0.08); padding: 2rem 2.5rem; min-width: 260px; flex: 1 1 260px; max-width: 340px; display: flex; align-items: center; gap: 1.2rem;">
+          <span style="background: #23272f; border-radius: 50%; padding: 1rem; display: flex; align-items: center; justify-content: center; margin-right: 1rem;"><i class="fas fa-map-marker-alt" style="font-size:2rem;color:#39ff14;"></i></span>
+          <div>
+            <div style="font-weight: bold; font-size: 1.2rem; margin-bottom: 0.2rem; color: #fff;">Location</div>
+            <div style="color: #fff;">Tirupati, Andhra Pradesh, India</div>
+          </div>
+        </div>
+        <div style="background: #23272f; color: #fff; border-radius: 18px; box-shadow: 0 2px 12px rgba(33,150,243,0.08); padding: 2rem 2.5rem; min-width: 260px; flex: 1 1 260px; max-width: 340px; display: flex; align-items: center; gap: 1.2rem;">
+          <span style="background: #23272f; border-radius: 50%; padding: 1rem; display: flex; align-items: center; justify-content: center; margin-right: 1rem;"><i class="fas fa-phone" style="font-size:2rem;color:#39ff14;"></i></span>
+          <div>
+            <div style="font-weight: bold; font-size: 1.2rem; margin-bottom: 0.2rem; color: #fff;">Call</div>
+            <div style="color: #fff;">+91 9908085512</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Certificate modal functions
+    function openCertificate(imgSrc) {
+      document.getElementById('modalImg').src = imgSrc;
+      document.getElementById('certModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCertificate() {
+      document.getElementById('certModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('certModal');
+      if (event.target === modal) closeCertificate();
+    }
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeCertificate();
+    });
+    // Simple slider (scrolls left/right)
+    function slideLeft() {
+      document.querySelector('.cert-slider').scrollBy({ left: -350, behavior: 'smooth' });
+    }
+    function slideRight() {
+      document.querySelector('.cert-slider').scrollBy({ left: 350, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
